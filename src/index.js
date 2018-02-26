@@ -1,7 +1,12 @@
 module.exports = function check(str, bracketsConfig) {
   let arBracketsRegExp = [];
+  let dopStr = "\\";
+  let numbers = [1,2,3,4,5,6,7,8,9];
   bracketsConfig.forEach(function(elem) {
-    arBracketsRegExp.push(new RegExp("\\" + elem[0] + "\\" + elem[1], "g"));
+    if (Number(elem[0]) in numbers) {
+      dopStr = "";
+    }
+    arBracketsRegExp.push(new RegExp(dopStr + elem[0] + dopStr + elem[1], "g"));
   });
   let strBefore, count = 0, size = arBracketsRegExp.length, res = false;
   while(true) {
